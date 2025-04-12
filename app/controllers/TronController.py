@@ -1,7 +1,8 @@
+import requests
 from tronpy import Tron
 from tronpy.providers import HTTPProvider
 
-from app.config.preferences import API_KEY
+from app.config.preferences import API_KEY, ENERGY_URL_BODY
 from app.models.WalletModel import Wallet
 from app.models.WalletResponseModel import WalletResponse
 
@@ -12,7 +13,9 @@ client = Tron(
 )
 
 
-async def get_wallet_data_from_tron(wallet: Wallet) -> WalletResponse:
+async def get_wallet_data_from_tron(wallet: Wallet) -> WalletResponse | None:
+    if not validate_addr(wallet):
+        return None
     bandwidth = client.get_bandwidth(wallet.address)
     account_balance = client.get_account_balance(wallet.address)
     account_energy = await get_account_energy(wallet)
@@ -35,3 +38,16 @@ async def get_account_energy(addr) -> int:
 
     account_energy = int((energy_weight / total_energy_weight) * total_energy_limit)
     return account_energy
+
+
+async def validate_addr(wallet: Wallet) -> bool:
+    payload = {
+        "address": wallet.address,
+        "visible": True
+    }
+    headers = {
+        "accept": "application/json",
+        "content-type": "application/json"
+    }
+    response = requests.post(ENERGY_URL_BODY, json=payload, headers=headers)
+    return response.json().get("result")
