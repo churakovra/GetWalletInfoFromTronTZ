@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+typing
+pydantic
+sqlalchemy
+pytest
+tronpy
+python-dotenv
+requests
+psycopg2-binary
