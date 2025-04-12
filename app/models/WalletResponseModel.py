@@ -1,8 +1,6 @@
 from pydantic import BaseModel
 from decimal import Decimal
 
-from app.models.WalletModel import Wallet
-
 
 class WalletResponse(BaseModel):
     wallet_addr: str
