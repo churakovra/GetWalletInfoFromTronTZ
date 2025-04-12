@@ -5,7 +5,7 @@ from app.models.WalletModel import Wallet
 
 
 class WalletResponse(BaseModel):
-    wallet_addr: Wallet.address
+    wallet_addr: str
     bandwidth: int
-    account_energy: int
+    account_energy: int | str
     account_balance: Decimal
