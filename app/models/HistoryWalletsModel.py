@@ -1,7 +1,8 @@
 from pydantic import BaseModel
+from typing import Dict
 
 from app.models.WalletLogModel import WalletLog
 
 
 class HistoryWallets(BaseModel):
-    response: dict[str:WalletLog]
+    response: Dict[str:WalletLog]
