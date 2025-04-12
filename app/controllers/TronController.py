@@ -1,5 +1,7 @@
 from tronpy import Tron
 
+from app.models.WalletModel import Wallet
+
 client = Tron()
 
 

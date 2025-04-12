@@ -1,5 +1,7 @@
 from fastapi import APIRouter
 
+from app.models.WalletModel import Wallet
+
 getWalletDataRouter = APIRouter()
 
 
