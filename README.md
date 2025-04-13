@@ -1,26 +1,26 @@
 # GetWalletInfoFromTronTZ
 Ходим в сеть трон и получаем инфу по запрашиваемому кошельку.
 
-Стек
+### Стек
 * WEB
-fastapi
-uvicorn
-starlette
-requests
+  * fastapi
+  * uvicorn
+  * starlette
+  * requests
 
 * ORM&Typing
-sqlalchemy
-psycopg2-binary
-typing
-pydantic
+  * sqlalchemy
+  * psycopg2-binary
+  * typing
+  * pydantic
 
 * Crypto
-tronpy
+  * tronpy
 
 * Test
-pytest
-pytest-asyncio
-httpx
+  * pytest
+  * pytest-asyncio
+  * httpx
 
 * Environment
-python-dotenv
+  * python-dotenv
