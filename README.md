@@ -2,25 +2,25 @@
 Ходим в сеть трон и получаем инфу по запрашиваемому кошельку.
 
 Стек
-#WEB
+* WEB
 fastapi
 uvicorn
 starlette
 requests
 
-#ORM&Typing
+* ORM&Typing
 sqlalchemy
 psycopg2-binary
 typing
 pydantic
 
-#Crypto
+* Crypto
 tronpy
 
-#Test
+* Test
 pytest
 pytest-asyncio
 httpx
 
-#Environment
+* Environment
 python-dotenv
