@@ -1,0 +1,30 @@
+services:
+  postgres:
+    image: postgres:14
+    environment:
+      - POSTGRES_USER=${WALLET_DB_USER}
+      - POSTGRES_PASSWORD=${WALLET_DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    ports:
+      - "5432:5432"
+    restart: always
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  web:
+    build: .
+    container_name: tronwallets_app
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    environment:
+      - WALLET_DB_USER=${WALLET_DB_USER}
+      - WALLET_DB_PASSWORD=${WALLET_DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
